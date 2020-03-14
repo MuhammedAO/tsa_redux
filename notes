@@ -1,0 +1,9 @@
+The overall idea and purpose of redux is that in react, managing a large components that needs access to state becomes very difficult and it gets very messy and that's where redux comes in.
+
+With redux, instead of component level state, you get App level state.
+
+You have your view(Component) and then you have your Store which includes your state and then it sends down the state to your component.
+
+inside of your component, you might have a button clicked which will fire off an Action/Action creator which will dispatch an action to the store.
+
+You also have reducers which are pure functions that specifies how the app level state should change in response to an action. and then the reducers respond with a new state.
