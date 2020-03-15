@@ -162,6 +162,29 @@ and we want the items from our reducer.
 
 this.state.posts => this.props.posts
 
+**
+CREATE_POST
+Remember we're submitting a post so this is going to take in the postData
+
+go to postForm component and cut that fechted Api and put it in actions.
+
+go to reducer and eval case for create_post.
+
+go to postForm component => bring in connect and also the action creator
+
+where we had the fetch req before is where we wanna call our action.
+
+remember in our reducer we're sending the state with the item..
+
+we can access this item in the post component b/c its basically being dispersed to all of our components. which is the main purpose of redux to begin with.
+
+add a newPost prop to mSTP.
+
+add the newPost to a lifecycle method componentwillrecieveprops.. this will run when it recieves new props from the state.
+
+it takes in a parameter of nextProps
+
+used unshift instead of push cuz push adds to the end of an array.
 
 
 
