@@ -12,6 +12,11 @@ switch (action.type) {
       ...state,
       items:action.payload
         }
+    case CREATE_POST:
+       return{
+       ...state,
+       item:action.payload
+       }
     default:
      return state;
 }
