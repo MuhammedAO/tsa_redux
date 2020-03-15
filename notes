@@ -134,6 +134,38 @@ this action will be dispatched to the postReducer.
 
 In post reducer, add switch cases for actions.
 
+**
+Implement in post component.
+
+There are some things that we need to do to actually get the posts from the store.
+
+the first thing we wanna do in our component is to import something called connect.
+
+connect => comes from the react-redux library just like the provider. it basicallt connects your component to your redux store that was provided by your provider component.
+
+Also bring in the fetch post action.
+
+in order to 'connect' we need to wrap our component around the connect in the export default
+
+the connect(mSTP, {fetchPosts}) takes in 2 parameters.. the first is mapStateToProps and the 2nd is the action creator itself.
+
+Add CDM again to the post.js
+
+in our component we have to get the new posts from the state and the way we do that is by using something called mapStateToProps.
+=> we get the state from redux and map it properties of the component and then we can use that inside of our component.
+
+create a mapStateToProps func. this takes in the state as a parameter and returns an {}
+
+the reason we're using the word posts in state.posts is because that is the name of our postReducer. that second parameter is always the name of your Reducer.
+
+and we want the items from our reducer.
+
+this.state.posts => this.props.posts
+
+
+
+
+
 
 
 
