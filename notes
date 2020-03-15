@@ -7,3 +7,135 @@ You have your view(Component) and then you have your Store which includes your s
 inside of your component, you might have a button clicked which will fire off an Action/Action creator which will dispatch an action to the store.
 
 You also have reducers which are pure functions that specifies how the app level state should change in response to an action. and then the reducers respond with a new state.
+
+Do basic clean up and create post and post form component.
+
+Make Fetch Api Call to jsonplaceholder from post.js
+
+We'll end up putting this data in the app level state but put it in the component state for now
+
+Add posts property to state
+
+set Api response to post in  setState
+
+create and display PostItems
+
+
+*
+Postform component
+
+Each of the input value will be part of the component state.
+
+if you save and then try to input a text into the forms, it wont work. you need an onChange event.
+
+Add onchange and bind this.
+
+Set name to value in handlechange
+
+Add onSubmit to form.
+
+Create onSubmit method, preventDefault and create a post variable and set that to what we want to submit which is the title and body gotten from the state.
+
+make Fetch request to the same Api but now we're making a Post request so we need to add additional info.
+
+in this additonal info, we specify the method, headers and body
+
+in the body we use a method called JSON.stringify which turns js values in json.
+
+complete the promise.
+
+**
+That's as far as we go with react cuz eventually we want to be able to submit the post it automatically gets added down to a completely separate Component. 
+
+This is where redux comes in.
+npm i redux react-redux redux-thunk. Cd into the correct directory.
+
+go to App.js
+Now that we've done that what we wanna do is to bring in what is called a Provider.
+
+The provider is actually a react-component and its basically the glue for react&redux.
+
+once we've imported this, we need to wrap everything in our App inside of that provider component.
+
+The provider takes in what's called the Store which holds the state.
+
+A store holds the whole state tree of your app. the only way to change the state inside it is to dispatch an action on it.
+
+a store is not a class.. its just an object with few methods on it.
+
+To create a store the createStore(reducer, [initialState], [enhancer])
+
+root reducer => you combine all of your other reducers into a rootReducer and pass it to your store.
+
+enhancer => Can be used to enhance the Redux store and add third-party libraries and middleware.
+
+The only store enhancer that ships with Redux is applyMiddleware().
+
+**
+Separation on concerns.
+create a new store.js file for your redux.
+move store import from app.js and import modularized store back into app.js
+import thunk from redux-thunk.
+create initState
+create middleware arr.
+create and export store. this store takes in a rootReducer which will be created separately.
+
+create a folder in src called reducers and add index.js for your reducer.
+
+remeber we mentioned combining all of our reducers into one single root reducer.. this is what we will be doing in our index.js 
+
+we have a function that does this for us. this is called combineReducers
+
+while we are it, we might as well create our own PostREducer.
+
+**
+postReducer
+this is where we eval any actions that are committed. actions such as fetching post & creating a new post.
+
+a reducer is a function that returns the next state tree, given the current state tree and the action to handle.
+
+for actions we create something called types which are basically just constants.
+
+Again s.o.c => create an actions folder in src and create a new file called types.js where our 2 actions will be defined.
+
+import actions into postReducer.
+
+in pR .. create initState which will have our fecthed posts from the actions and our single created post that we add when we get a response.
+
+then we export a reducer function that evaluates what type of action we're dealing with. this takes in state and action 
+
+The action must include a type. this tells us what type of action we're evaluating. this can be done in different ways but the common way is to use a switch.
+
+**
+Now that our reducer is basically ready to take in some types.. we can now create our action files.
+
+**
+create new file postActions.js
+
+import actions
+
+Each actions/actions creator is going to be a function that needs to be exported
+
+remember the thunk middleware? it allows us to call the dispatch func directly so that we can make asynchronous requests.
+
+inside the action creator func, we create another func that takes in the dispatch.
+
+what the dispatch basically does is to as the name implies 'dispatch' the action to the reducer.
+
+go to Post.js and cut the fetch api and also delete the CDM and also take away the constructor cuz we no longer need the state in this component. the posts will now be coming from redux.
+
+paste the Fetch inside the postActions..
+
+take away the setState and replace it with the dispatch.
+
+the dispatch takes in the action type and the payload. this payload just simply signifies whatever data is coming in with the 'type' to the reducer.
+
+this action will be dispatched to the postReducer.
+
+In post reducer, add switch cases for actions.
+
+
+
+
+
+
