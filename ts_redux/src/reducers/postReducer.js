@@ -1,14 +1,17 @@
 import {FETCH_POSTS, CREATE_POST} from '../actions/types'
 
 const initialState = {
-    posts:[],
-    post:{}
+    items:[],
+    item:{}
 }
 
 export default function(state = initialState, action){
 switch (action.type) {
-   
-    
+    case FETCH_POSTS:
+        return{
+      ...state,
+      items:action.payload
+        }
     default:
      return state;
 }
